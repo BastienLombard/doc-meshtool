@@ -1,0 +1,45 @@
+name: Build & publish doc
+on:
+  repository_dispatch:
+    types: [meshtool-updated]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-doc
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer meshtool (privé)
+        uses: actions/checkout@v4
+        with:
+          repository: submar-tlse/mesh-tool
+          ref: develop
+          token: ${{ secrets.MESHTOOL_READ_TOKEN }}
+          path: meshtool
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Installer
+        run: |
+          pip install -e ./meshtool
+          pip install sphinx-rtd-theme
+
+      - name: Build Sphinx
+        run: |
+          sphinx-build -b html meshtool/docs/source _site
+
+      - name: Commit sur gh-pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_site
+          force_orphan: true
+          dry_run: true
