@@ -1,3 +1,3 @@
-# doc-meshtool
+# Meshtool documentation generator
 
-The documentation is available at [this url]("https://bastienlombard.github.io/doc-meshtool/").
+The API documentation is available at [this url](https://bastienlombard.github.io/doc-meshtool/).
