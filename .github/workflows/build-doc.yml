@@ -19,7 +19,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: submar-tlse/mesh-tool
-          ref: develop
+          ref: main
           token: ${{ secrets.MESHTOOL_READ_TOKEN }}
           path: meshtool
 
