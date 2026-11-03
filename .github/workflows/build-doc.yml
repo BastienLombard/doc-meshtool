@@ -29,9 +29,9 @@ jobs:
 
       - name: Installer
         run: |
-          pip install -e ./meshtool
-          pip install sphinx-rtd-theme
-
+          pip install numpy scipy shapely pyproj meshio sphinx-rtd-theme
+          pip install -e . --no-deps      
+          
       - name: Build Sphinx
         run: |
           sphinx-build -b html meshtool/docs/source _site
