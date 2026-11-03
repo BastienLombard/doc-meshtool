@@ -30,7 +30,7 @@ jobs:
       - name: Installer
         run: |
           pip install numpy scipy shapely pyproj meshio sphinx-rtd-theme
-          pip install -e ./mesh-tool --no-deps      
+          pip install -e ./meshtool --no-deps      
           
       - name: Build Sphinx
         run: |
